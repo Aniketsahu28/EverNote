@@ -1,0 +1,22 @@
+/* for width of 850 and above */
+@media screen and (min-width: 850px) {
+    .my-new-note {
+      width: 60%;
+    }
+  }
+
+  /* for width less than 480 and  */
+@media screen and (max-width: 480px) {
+    .my-new-note {
+      width: 100%;
+    }
+  }
+
+  /* for width greater than 480 and less than 849  */
+@media screen and (min-width: 481px) and (max-width:849){
+    .my-new-note {
+      width: 70%;
+    }
+  }
+
+
