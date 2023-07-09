@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Signup = (props) => {
-  const host = "http://localhost:5000";
+  // const host = "http://localhost:5000";
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     name: "",
@@ -14,7 +14,7 @@ const Signup = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password } = credentials;
-    const response = await fetch(`${host}/api/auth/createuser`, {
+    const response = await fetch(`/api/auth/createuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
