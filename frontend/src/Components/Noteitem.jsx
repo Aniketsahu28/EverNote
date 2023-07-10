@@ -8,7 +8,10 @@ const Noteitem = (props) => {
   return (
     <div className="col-md-4">
       <div className="card text-center my-3" style={{ borderRadius: "10px" }}>
-        <div className="card-header d-flex align-items-center justify-content-between" style={{ backgroundColor: "#25AEDA" }}>
+        <div
+          className="card-header d-flex align-items-center justify-content-between"
+          style={{ backgroundColor: "#25AEDA" }}
+        >
           <h5 className="card-title">{note.title}</h5>
           <div>
             <lord-icon
@@ -42,7 +45,10 @@ const Noteitem = (props) => {
         <div className="card-body">
           <p className="card-text">{note.description}</p>
         </div>
-        <div className="card-footer text-body-secondary"><strong>Tags: </strong>{note.tag}</div>
+        <div style={(!note.tag) ? { display: "none" } : { display: "block" }} className="card-footer text-body-secondary">
+          <strong>Tags: </strong>
+          {note.tag}
+        </div>
       </div>
     </div>
   );
