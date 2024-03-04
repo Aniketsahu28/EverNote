@@ -7,7 +7,6 @@ import empty_note from "./page.png"
 
 const Notes = (props) => {
   let navigate = useNavigate();
-
   const context = useContext(NoteContext);
   const { notes, getNote, editNote } = context;
   useEffect(() => {
@@ -18,7 +17,7 @@ const Notes = (props) => {
     }
     // eslint-disable-next-line
   }, []);
-
+  console.log('NOTES:', notes);
   const ref = useRef(null);
   const refClose = useRef(null);
 
@@ -154,17 +153,17 @@ const Notes = (props) => {
       </div>
       <div className="container row my-5">
         <h2>Your notes</h2>
-        <div style={(notes.length === 0) ? { display: 'block' } : { display: 'none' }}>
+        <div style={(Array.isArray(notes) && notes?.length === 0) ? { display: 'block' } : { display: 'none' }}>
           <div className="container d-flex" style={{ width: "100%", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }} >
             <div className="left d-flex" style={{ fontSize: "25px", alignItems: "center", justifyContent: "center", width: "30%", minWidth: "325px", maxWidth: "400px", margin: "10px 0px" }}>
-              {notes.length === 0 && "Your notebook is empty"}
+              {Array.isArray(notes) && notes?.length === 0 && "Your notebook is empty"}
             </div>
             <div className="right d-flex" style={{ alignItems: "center", justifyContent: "center" }}>
               <img src={empty_note} alt="empty note" style={{ width: "15%", minWidth: "150px", maxWidth: "400px" }} />
             </div>
           </div>
         </div>
-        {notes.map((note) => {
+        {Array.isArray(notes) && notes?.map((note) => {
           return (
             <Noteitem
               key={note._id}

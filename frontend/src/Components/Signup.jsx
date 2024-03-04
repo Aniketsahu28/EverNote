@@ -34,6 +34,12 @@ const Signup = (props) => {
     } else {
       props.showAlert("Invalid credentials", "danger");
     }
+    setCredentials({
+      name: "",
+      email: "",
+      password: "",
+      cpassword: "",
+    })
   };
 
   const onChange = (e) => {
