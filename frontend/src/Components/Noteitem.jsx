@@ -6,7 +6,7 @@ const Noteitem = (props) => {
   const { deleteNote } = context;
   const { note, updateNote } = props;
   return (
-    <div className="col-md-4">
+    <div className="noteItem">
       <div className="card text-center my-3" style={{ borderRadius: "10px" }}>
         <div
           className="card-header d-flex align-items-center justify-content-between"

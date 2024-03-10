@@ -1,0 +1,29 @@
+.AddNoteHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #76ABAE;
+    width:  100%;
+    padding: 40px 20px;
+}
+
+.allnotesbox{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+
+}
+
+.mainAllNotes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 40px 20px;
+}
+
+.noteItem{
+    width: 30%;
+    margin: 10px;
+}

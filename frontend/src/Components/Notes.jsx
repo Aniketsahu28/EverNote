@@ -3,7 +3,6 @@ import NoteContext from "../Context/notes/NoteContext";
 import Noteitem from "./Noteitem";
 import AddNote from "./AddNote";
 import { useNavigate } from "react-router-dom";
-import empty_note from "./page.png";
 
 const Notes = (props) => {
   let navigate = useNavigate();
@@ -47,7 +46,7 @@ const Notes = (props) => {
     setnote({ ...note, [e.target.name]: e.target.value });
   };
   return (
-    <>
+    <div>
       <AddNote showAlert={props.showAlert} />
       <button
         ref={ref}
@@ -150,65 +149,23 @@ const Notes = (props) => {
           </div>
         </div>
       </div>
-      <div className="container row my-5">
-        <h2>Your notes</h2>
-        <div
-          style={
-            Array.isArray(notes) && notes?.length === 0
-              ? { display: "block" }
-              : { display: "none" }
-          }
-        >
-          <div
-            className="container d-flex"
-            style={{
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            <div
-              className="left d-flex"
-              style={{
-                fontSize: "25px",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "30%",
-                minWidth: "325px",
-                maxWidth: "400px",
-                margin: "10px 0px",
-              }}
-            >
-              {Array.isArray(notes) &&
-                notes?.length === 0 &&
-                "Your notebook is empty"}
-            </div>
-            <div
-              className="right d-flex"
-              style={{ alignItems: "center", justifyContent: "center" }}
-            >
-              <img
-                src={empty_note}
-                alt="empty note"
-                style={{ width: "15%", minWidth: "150px", maxWidth: "400px" }}
-              />
-            </div>
-          </div>
+      <div className="row mainAllNotes">
+        <h2 style={{ width: "fit-content" }}>Your notes</h2>
+        <div className="allnotesbox">
+          {Array.isArray(notes) &&
+            notes?.map((note) => {
+              return (
+                <Noteitem
+                  key={note._id}
+                  note={note}
+                  updateNote={updateNote}
+                  showAlert={props.showAlert}
+                />
+              );
+            })}
         </div>
-        {Array.isArray(notes) &&
-          notes?.map((note) => {
-            return (
-              <Noteitem
-                key={note._id}
-                note={note}
-                updateNote={updateNote}
-                showAlert={props.showAlert}
-              />
-            );
-          })}
       </div>
-    </>
+    </div>
   );
 };
 

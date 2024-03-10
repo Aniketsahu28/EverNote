@@ -26,7 +26,7 @@ function App() {
         <Router>
           <Navbar />
           <Alert alert={alert} />
-          <div className="container">
+          <div className="">
             <Routes>
               <Route
                 exact
