@@ -10,7 +10,7 @@ const Login = (props) => {
     try {
       e.preventDefault();
       const { email, password } = credentials;
-      const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
+      const response = await fetch(`/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
