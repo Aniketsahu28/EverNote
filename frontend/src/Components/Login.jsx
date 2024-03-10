@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+const BACKEND_URL = process.env.BACKEND_URL;
 
 const Login = (props) => {
-  // const host = "http://localhost:5000";
-
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
@@ -11,7 +10,7 @@ const Login = (props) => {
     try {
       e.preventDefault();
       const { email, password } = credentials;
-      const response = await fetch(`/api/auth/login`, {
+      const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
