@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-const BACKEND_URL = process.env.BACKEND_URL;
 
 const Login = (props) => {
   let navigate = useNavigate();
