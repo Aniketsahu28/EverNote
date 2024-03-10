@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const BACKEND_URL = process.env.BACKEND_URL;
 
 const Signup = (props) => {
   let navigate = useNavigate();
@@ -14,7 +13,7 @@ const Signup = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password } = credentials;
-    const response = await fetch(`${BACKEND_URL}/api/auth/createuser`, {
+    const response = await fetch(`/api/auth/createuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
