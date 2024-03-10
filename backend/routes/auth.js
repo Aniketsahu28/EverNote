@@ -60,7 +60,7 @@ router.post(
   }
 );
 
-// ROUTE 2 : Authenticate a user using : POST "/api/auth/login". No login required
+// ROUTE 2 : Authenticate a user using : POST "/api/auth/login". No cin required
 router.post(
   "/login",
   [
@@ -77,9 +77,7 @@ router.post(
 
     const { email, password } = req.body;
     try {
-      console.log('here', email);
-      let user = await User.find({ email });
-      console.log('now here');
+      let user = await User.findOne({ email });
       if (!user) {
         success = false;
         return res.status(400).json({
@@ -87,21 +85,26 @@ router.post(
           error: "Please try to login with correct credentials",
         });
       }
-      const passwordCompare = await bcrypt.compare(password, user.password);
-      if (!passwordCompare) {
-        return res
-          .status(400)
-          .json({ error: "Please try to login with correct credentials" });
-      }
-
-      const data = {
-        user: {
-          id: user.id,
-        },
-      };
-      const authtoken = jwt.sign(data, JWT_SECRET);
-      success = true;
-      res.json({ success, authtoken });
+      bcrypt.compare(password, user.password, (err, resp) => {
+        if (err) {
+          return res.status(400).json({ error: err });
+        }
+        if (res) {
+          const data = {
+            user: {
+              id: user.id,
+            },
+          };
+          const authtoken = jwt.sign(data, JWT_SECRET);
+          success = true;
+          res.json({ success, authtoken });
+        } else {
+          return response.json({
+            success: false,
+            message: "passwords do not match",
+          });
+        }
+      });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal server error");
