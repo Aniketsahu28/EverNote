@@ -10,8 +10,7 @@ const AddNote = (props) => {
     tag: "",
   });
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     addNote(note.title, note.description, note.tag);
     setnote({ title: "", description: "", tag: "" });
     props.showAlert("New note added successfully", "success");

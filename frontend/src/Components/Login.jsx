@@ -8,28 +8,31 @@ const Login = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(credentials.email);
-    const response = await fetch(`/api/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: credentials.email,
-        password: credentials.password,
-      }),
-    });
-    const json = await response.json();
-
-    if (json.success) {
-      //Save the auth token and redirect
-      localStorage.setItem("token", json.authtoken);
-      console.log(localStorage.getItem("token"));
-      props.showAlert("Logged in successfully", "success");
-      navigate("/");
-    } else {
-      props.showAlert("Invalid details", "danger");
+    try {
+      e.preventDefault();
+      const { email, password } = credentials;
+      const response = await fetch(`/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+      const json = await response.json();
+      console.log(json);
+      if (json.success) {
+        localStorage.setItem("token", json.authtoken);
+        console.log(localStorage.getItem("token"));
+        props.showAlert("Logged in successfully", "success");
+        navigate("/");
+      } else {
+        props.showAlert("Invalid details", "danger");
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
