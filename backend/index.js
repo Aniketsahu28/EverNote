@@ -8,7 +8,7 @@ connectToMongo();
 const app = express();
 app.use(cors(
   {
-    origin: [""], //Add frontend deploy link
+    origin: ["https://ever-note-frontend.vercel.app/"], //Add frontend deploy link
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
   }
