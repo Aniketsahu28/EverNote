@@ -9,7 +9,7 @@ const Login = (props) => {
     try {
       e.preventDefault();
       const { email, password } = credentials;
-      const response = await fetch(`/api/auth/login`, {
+      const response = await fetch(`https://evernote-backend.onrender.com/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
